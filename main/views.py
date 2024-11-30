@@ -13,3 +13,11 @@ def product_detail(request, slug):
     return render(request, "main/product/detail.html", {"product": product})
 
 
+def get_error(request):
+    return render(request, "main/errors/r1.html")
+
+def get_error1(request):
+    return render(request, "main/errors/r2.html")
+
+def get_error2(request):
+    return render(request, "main/errors/r3.html")

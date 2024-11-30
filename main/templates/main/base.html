@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
 
-    {% comment %} bootstrap {% endcomment %} 
     <link rel="stylesheet" href="{% static 'bootstrap\css\bootstrap.min.css' %}">
-    {% comment %} css {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
@@ -20,7 +18,7 @@
                         <a href="/" class="nav-a m-3">Home</a>
                     </li>
                     <li>
-                        <a href="/shop" class="nav-a m-3">Shop</a>
+                        <a href="/shop" class="nav-a m-3">List</a>
                     </li>
                 </ul>
             </navbar>
@@ -55,6 +53,5 @@
     <img src="{% static 'img/frame3.png' %}" class="frame3" alt="">
     <img src="{% static 'img/frame4.png' %}" class="frame4" alt="">
 
-    {% comment %} js for boorstrap {% endcomment %}
     <script src="{% static 'bootstrap\js\bootstrap.bundle.min.js' %}"></script>
 </body>
