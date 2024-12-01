@@ -1,0 +1,138 @@
+/* base.css */
+
+/* Общие стили */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Светло-серый фон */
+    margin: 0;
+    padding: 0;
+    color: #343a40; /* Темно-серый цвет текста */
+}
+
+a {
+    text-decoration: none;
+    color: #007bff; /* Синий цвет ссылок */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* Темно-синий при наведении */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Заголовок */
+.header {
+    background-color: #ffffff; /* Белый фон */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    z-index: 1000;
+}
+
+.header-container {
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-list li {
+    display: inline;
+}
+
+.nav-a {
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: #e9ecef; /* Светло-серый фон */
+}
+
+.nav-a:hover {
+    background-color: #dee2e6; /* Темнее при наведении */
+    color: #495057; /* Темный текст */
+}
+
+.header-logo img {
+    height: 50px;
+    width: auto;
+}
+
+.header-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-quantity {
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #ffc107; /* Желтый фон */
+    color: #343a40;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+/* Фреймы */
+.frame1, .frame2, .frame3, .frame4 {
+    position: absolute;
+    z-index: 1;
+}
+
+.frame1 {
+    top: 10px;
+    left: 10px;
+    width: 100px;
+}
+
+.frame2 {
+    top: 10px;
+    right: 10px;
+    width: 100px;
+}
+
+.frame3 {
+    bottom: 10px;
+    left: 10px;
+    width: 100px;
+}
+
+.frame4 {
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+}
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+    .header-container {
+        flex-wrap: wrap;
+    }
+
+    .nav-a {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .header-logo img {
+        height: 40px;
+    }
+
+    .header-profile {
+        justify-content: flex-end;
+        gap: 10px;
+    }
+}

@@ -5,8 +5,9 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.popular_list, name='popular_list'),
-    path('<slug:slug>/', views.product_detail, name='product_detail'),
-    path('error505', views.get_error, name='get_error'),
-    path('error404', views.get_error1, name='get_error1'),
-    path('error202', views.get_error2, name='get_error2'),
+    path('shop/<slug:slug>/', views.product_detail, name='product_detail'),
+    path('shop/', views.product_list, name='product_list'),
+    path('shop/category/<slug:category_slug>/', views.product_list,
+         name='product_list_by_category'),
+
 ]
