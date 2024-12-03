@@ -1,9 +1,8 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Ошибка 202</title>
+    <title>Ошибка Регистрации</title>
     <style>
         body {
             background: #1d2124;
@@ -16,7 +15,7 @@
             font-family: Arial, sans-serif;
             color: white;
             text-align: center;
-            overflow: hidden; 
+            overflow: hidden;
             position: relative;
         }
         h1 {
@@ -27,9 +26,10 @@
             font-size: 24px;
         }
         img {
-            max-width: 300px; 
+            max-width: 300px;
             margin-top: 20px;
         }
+
         .rain {
             position: absolute;
             top: 0;
@@ -58,20 +58,37 @@
 </head>
 <body>
     <div class="rain"></div>
-    <h1>202</h1>
-    <p>Это что вирус? А нет, просто проблема, которую мы решаем.</p>
-    <img src="{% static 'img/cry.jpg' %}" alt="Грустный смайлик">
-
+    <h2>Ошибка при входе</h2>
     <script>
         const rainContainer = document.querySelector('.rain');
         for (let i = 0; i < 100; i++) {
             const drop = document.createElement('div');
             drop.className = 'drop';
-            drop.style.left = Math.random() * 100 + 'vw'; 
+            drop.style.left = Math.random() * 100 + 'vw';
             drop.style.animationDuration = Math.random() * 1 + 0.5 + 's';
             drop.style.opacity = Math.random();
             rainContainer.appendChild(drop);
         }
     </script>
+
+
+        <p>Проверьте корректность введенных данных.</p>
+
+        <a href="{% url "user:login" %}" style="
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        color: #333333;
+        border: 2px solid #cccccc;
+        border-radius: 12px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        ">
+            Попробовать снова
+    </a>
 </body>
 </html>

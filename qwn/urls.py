@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.conf.urls import handler500
+from django.shortcuts import render
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,12 @@ urlpatterns = [
     path('errors/', include('errors.urls', namespace='errors')),
 
 ]
+
+
+def custom_error_500_view(request):
+    return render(request, 'errors/error_500.html', status=500)
+
+
+handler500 = custom_error_500_view
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

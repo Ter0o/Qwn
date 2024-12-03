@@ -1,7 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Product, Category
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
-
+from .models import Product, Category
 
 
 def popular_list(request):
@@ -17,8 +16,8 @@ def product_detail(request, slug):
                                 available=True)
     return render(request,
                   'main/product/detail.html',
-                  {'product': product,
-                   })
+                  {'product': product})
+
 
 def product_list(request, category_slug=None):
     page = request.GET.get('page', 1)
@@ -40,11 +39,5 @@ def product_list(request, category_slug=None):
                    'slug_url': category_slug})
 
 
-def get_error(request):
-    return render(request, "main/errors/r1.html")
-
-def get_error1(request):
-    return render(request, "main/errors/r2.html")
-
-def get_error2(request):
-    return render(request, "main/errors/r3.html")
+def redirect_to_telegram(request):
+    return redirect('https://t.me/ter0o')

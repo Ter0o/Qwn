@@ -8,7 +8,7 @@
 {% block content %}
 
     <div class="detail-product">
-        
+
         <div class="detail-description">
             <h3>{{ product.name }}</h3>
             <h4>Тип работы: {{ product.category }}</h4>
@@ -16,10 +16,11 @@
             <p style="max-width: 100px">{{ product.description|linebreaks }}</p>
             <img src="
                             {% if product.image %}{{ product.image.url }}{% else %}{% static 'img/img.png' %}{% endif %}"
-                         alt=""  style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);"> 
-            
+                         alt=""  style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
 
-            
-            <input type="submit" class="add-to-cart-btn" value="Написать"></div>
+
+                    <form action="{% url 'main:redirect_to_telegram' %}" method="get">
+                            <button type="submit" class="add-to-cart-btn">Написать</button>
+                    </form>
     </div>
 {% endblock content %}

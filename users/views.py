@@ -5,8 +5,6 @@ from django.http import HttpResponseRedirect
 from .forms import UserLoginForm, UserRegistrationForm, \
     ProfileForm
 from django.contrib.auth.decorators import login_required
-from django.db.models import Prefetch
-#from orders.models import Order, OrderItem
 
 
 def login(request):
@@ -20,7 +18,10 @@ def login(request):
             if user:
                 auth.login(request, user)
                 return HttpResponseRedirect(reverse('main:product_list'))
+        else:
+            return redirect('errors:get_login_error')
     else:
+
         form = UserLoginForm()
     return render(request, 'users/login.html', {'form': form})
 
@@ -35,10 +36,12 @@ def registration(request):
             messages.success(
                 request, f'{user.username}, Successful Registration'
             )
+
             return HttpResponseRedirect(reverse('user:login'))
+        else:
+            return redirect('errors:get_registration_error')
     else:
-        form = UserRegistrationForm()
-    return render(request, 'users/registration.html')
+        return render(request, 'users/registration.html')
 
 
 @login_required
@@ -52,16 +55,6 @@ def profile(request):
             return HttpResponseRedirect(reverse('user:profile'))
     else:
         form = ProfileForm(instance=request.user)
-
-    # orders = Order.objects.filter(user=request.user).prefetch_related(
-    #     Prefetch(
-    #         'items',
-    #         queryset=OrderItem.objects.select_related('product'),
-    #     )
-    # ).order_by('-id')
-    # return render(request, 'users/profile.html',
-    #               {'form': form,
-    #                'orders': orders})
 
 
 def logout(request):

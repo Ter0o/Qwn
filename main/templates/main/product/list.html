@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title %}Work in Russia{% endblock title %}
+{% block title %}Workly{% endblock title %}
 
 {% block content %}
     <div class="llist d-flex">
@@ -9,11 +9,11 @@
             <h3>Категории</h3>
             <ul>
                 <li {% if not category %}class="selected"{% endif %}>
-                    <a href="{% url "main:product_list" %}">All</a>
+                    <a href="{% url "main:product_list" %}">Все</a>
                 </li>
                 {% for c in categories %}
                     <li {% if category.slug == c.slug %}class="selected"{% endif %}>
-                        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                        <a href="{% url 'main:product_list_by_category' category_slug=c.slug %}">{{ c.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -31,8 +31,8 @@
                                 <h5 class="title-card">{{ product.name }}</h5>
                                 {% if product.discount %}
                                     <div class="cart-discount d-flex gap-2">
-                                        <p class="line">$ {{ product.salary }} Р</p>
-                                        <p class="price pt-2">$ {{ product.sell_price }} Р</p>
+                                        <p class="line">$ {{ product.salary }}</p>
+                                        <p class="price pt-2">$ {{ product.sell_price }}</p>
                                     </div>
                                 {% else %}
                                     <p class="price">{{ product.salary }} Р</p>
@@ -43,18 +43,18 @@
                 </div>
             </div>
             <ul class="pagination">
-                <li class="{% if not products.has_previous %}disabled{% endif %}">
-                    <a href="{% if products.has_previous %}?page={{ products.previous_page_number }}{% endif %}">Предыдущие</a>
+                <li class="{% if not page_obj.has_previous %}disabled{% endif %}">
+                    <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}">Предыдущие</a>
                 </li>
-                {% for page in products.paginator.page_range %}
-                    {% if page >= products.number|add:-2 and page <= products.number|add:2 %}
+                {% for page in page_obj.paginator.page_range %}
+                    {% if page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
                         <li>
-                            <a href="?page={{ page }}" class="{% if products.number == page %}disabled{% endif %}">{{ page }}</a>
+                            <a href="?page={{ page }}" class="{% if page_obj.number == page %}disabled{% endif %}">{{ page }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
-                <li class="{% if not products.has_next %}disabled{% endif %}">
-                    <a href="{% if products.has_next %}?page={{ products.next_page_number }}{% endif %}">Далее</a>
+                <li class="{% if not page_obj.has_next %}disabled{% endif %}">
+                    <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}">Далее</a>
                 </li>
             </ul>
         </div>
